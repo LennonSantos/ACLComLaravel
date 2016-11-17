@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
- 
+@extends('adminlte::page')
 
 @section('content')
 
@@ -10,15 +8,15 @@
 
 	        <div class="pull-left">
 
-	            <h2>Items CRUD</h2>
+	            <h2>blocos CRUD</h2>
 
 	        </div>
 
 	        <div class="pull-right">
 
-	        	@permission('item-create')
+	        	@permission(('item-create'))
 
-	            <a class="btn btn-success" href="{{ route('itemCRUD2.create') }}"> Create New Item</a>
+	            <a class="btn btn-success" href="{{ route('bloco.create') }}"> Create New Item</a>
 
 	            @endpermission
 
@@ -52,29 +50,29 @@
 
 		</tr>
 
-	@foreach ($items as $key => $item)
+	@foreach ($blocos as $key => $bloco)
 
 	<tr>
 
 		<td>{{ ++$i }}</td>
 
-		<td>{{ $item->title }}</td>
+		<td>{{ $bloco->title }}</td>
 
-		<td>{{ $item->description }}</td>
+		<td>{{ $bloco->description }}</td>
 
 		<td>
 
-			<a class="btn btn-info" href="{{ route('itemCRUD2.show',$item->id) }}">Show</a>
+			<a class="btn btn-info" href="{{ route('bloco.show',$bloco->id) }}">Show</a>
 
-			@permission('item-edit')
+			@permission(('item-edit'))
 
-			<a class="btn btn-primary" href="{{ route('itemCRUD2.edit',$item->id) }}">Edit</a>
+			<a class="btn btn-primary" href="{{ route('bloco.edit',$bloco->id) }}">Edit</a>
 
 			@endpermission
 
-			@permission('item-delete')
+			@permission(('item-delete'))
 
-			{!! Form::open(['method' => 'DELETE','route' => ['itemCRUD2.destroy', $item->id],'style'=>'display:inline']) !!}
+			{!! Form::open(['method' => 'DELETE','route' => ['bloco.destroy', $bloco->id],'style'=>'display:inline']) !!}
 
             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
 
@@ -90,6 +88,6 @@
 
 	</table>
 
-	{!! $items->render() !!}
+	{!! $blocos->render() !!}
 
 @endsection

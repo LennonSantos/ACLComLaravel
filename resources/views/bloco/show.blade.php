@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
  
 
@@ -16,7 +16,7 @@
 
 	        <div class="pull-right">
 
-	            <a class="btn btn-primary" href="{{ route('itemCRUD2.index') }}"> Back</a>
+	            <a class="btn btn-primary" href="{{ route('bloco.index') }}"> Back</a>
 
 	        </div>
 
@@ -32,7 +32,7 @@
 
                 <strong>Title:</strong>
 
-                {{ $item->title }}
+                {{ $bloco->title }}
 
             </div>
 
@@ -44,7 +44,7 @@
 
                 <strong>Description:</strong>
 
-                {{ $item->description }}
+                {{ $bloco->description }}
 
             </div>
 

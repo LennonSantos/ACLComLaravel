@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
- 
+@extends('adminlte::page') 
 
 @section('content')
 
@@ -16,7 +14,7 @@
 
 	        <div class="pull-right">
 
-	            <a class="btn btn-primary" href="{{ route('itemCRUD2.index') }}"> Back</a>
+	            <a class="btn btn-primary" href="{{ route('bloco.index') }}"> Back</a>
 
 	        </div>
 
@@ -44,7 +42,7 @@
 
 	@endif
 
-	{!! Form::open(array('route' => 'itemCRUD2.store','method'=>'POST')) !!}
+	{!! Form::open(array('route' => 'bloco.store','method'=>'POST')) !!}
 
 	<div class="row">
 

@@ -115,25 +115,40 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
+            'text'        => 'Bloco',
+            'url'         => 'bloco',
             'icon'        => 'file',
             'label'       => 4,
             'label_color' => 'success',
         ],
         'ACCOUNT SETTINGS',
         [
-            'text' => 'Profile',
-            'url'  => 'admin/settings',
+            'text' => 'Unidade',
+            'url'  => 'unidade',
             'icon' => 'user',
         ],
         [
-            'text' => 'Change Password',
-            'url'  => 'admin/settings',
+            'text' => 'Morador',
+            'url'  => 'morador',
+            'icon' => 'lock',
+        ],
+         [
+            'text' => 'Veículo',
+            'url'  => 'veiculo',
+            'icon' => 'lock',
+        ],
+         [
+            'text' => 'Fornecedor',
+            'url'  => 'fornecedor',
+            'icon' => 'lock',
+        ],
+         [
+            'text' => 'Usuario',
+            'url'  => 'users',
             'icon' => 'lock',
         ],
         [
-            'text'    => 'Multilevel',
+            'text'    => 'Veiculo',
             'icon'    => 'share',
             'submenu' => [
                 [
