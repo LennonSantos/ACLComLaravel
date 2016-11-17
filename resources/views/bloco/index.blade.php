@@ -8,9 +8,11 @@
 		            <h2>BLOCOS</h2>
 		        </div>
 		        <div class="pull-right">
+		        	@permission(('item-create'))
 					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#create-bloco">
 				  		Criar bloco
 					</button>
+					@endpermission
 		        </div>
 		    </div>
 		</div>

@@ -41,7 +41,6 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::patch('roles/{id}',['as'=>'roles.update','uses'=>'RoleController@update','middleware' => ['permission:role-edit']]);
 	Route::delete('roles/{id}',['as'=>'roles.destroy','uses'=>'RoleController@destroy','middleware' => ['permission:role-delete']]);
 */
-
 });
 
 
