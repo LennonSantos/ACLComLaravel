@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'skin' => 'blue',
+    'skin' => 'red',
 
     /*
     |--------------------------------------------------------------------------
@@ -111,7 +111,7 @@ return [
         'MENU PRINCIPAL',
         [
             'text'        => 'Bloco',
-            'url'         => 'bloco',
+            'url'         => 'manage-bloco',
             'icon'        => 'file',
         ],
         [
@@ -142,12 +142,12 @@ return [
         'CONFIGURAÇÕES DE CONTA',
        
         [
-            'text'    => 'Veiculo',
+            'text'    => 'Permissões',
             'icon'    => 'share',
             'submenu' => [
                 [
-                    'text' => 'Level One',
-                    'url'  => '#',
+                    'text' => 'Permissões',
+                    'url'  => 'roles',
                 ],
                 [
                     'text'    => 'Level One',
