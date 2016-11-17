@@ -9,62 +9,97 @@ use App\Bloco;
 class BlocoController extends Controller
 {
 
-    public function index(Request $request)
+    public function manageBloco()
     {
-        $blocos = Bloco::orderBy('id','DESC')->paginate(5);
-        return view('bloco.index',compact('blocos'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('bloco.index');
     }
 
-    public function create()
+    public function index(Request $request)
     {
-        return view('bloco.create');
+
+        $blocos = Bloco::latest()->paginate(5);
+
+
+        $response = [
+
+            'pagination' => [
+
+                'total' => $blocos->total(),
+
+                'per_page' => $blocos->perPage(),
+
+                'current_page' => $blocos->currentPage(),
+
+                'last_page' => $blocos->lastPage(),
+
+                'from' => $blocos->firstItem(),
+
+                'to' => $blocos->lastItem()
+
+            ],
+
+            'data' => $blocos
+
+        ];
+
+
+        return response()->json($response);
+
     }
+
 
     public function store(Request $request)
     {
 
         $this->validate($request, [
-            'title' => 'required',
-            'description' => 'required',
+
+            'nome_bloco' => 'required',
+
+            'quantidade_unidade' => 'required',
+
         ]);
 
-        Bloco::create($request->all());
 
-        return redirect()->route('bloco.index')
-                        ->with('success','bloco created successfully');
+        $create = Bloco::create($request->all());
+
+
+        return response()->json($create);
+
     }
 
-    public function show($id)
-    {
-        $bloco = Bloco::find($id);
-        return view('bloco.show',compact('bloco'));
-    }
 
-    public function edit($id)
-    {
-        $bloco = Bloco::find($id);
-        return view('bloco.edit',compact('bloco'));
-    }
+    
 
     public function update(Request $request, $id)
+
     {
+
         $this->validate($request, [
-            'title' => 'required',
-            'description' => 'required',
+
+            'nome_bloco' => 'required',
+
+            'quantidade_unidade' => 'required',
+
         ]);
 
-        Bloco::find($id)->update($request->all());
 
-        return redirect()->route('bloco.index')
-                        ->with('success','bloco updated successfully');
+        $edit = Bloco::find($id)->update($request->all());
+
+
+        return response()->json($edit);
+
     }
 
+
+
     public function destroy($id)
+
     {
+
         Bloco::find($id)->delete();
-        return redirect()->route('bloco.index')
-                        ->with('success','bloco deleted successfully');
+
+        return response()->json(['done']);
+
     }
 
 }

@@ -108,20 +108,12 @@ return [
     */
 
     'menu' => [
-        'MAIN NAVIGATION',
-        [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
+        'MENU PRINCIPAL',
         [
             'text'        => 'Bloco',
             'url'         => 'bloco',
             'icon'        => 'file',
-            'label'       => 4,
-            'label_color' => 'success',
         ],
-        'ACCOUNT SETTINGS',
         [
             'text' => 'Unidade',
             'url'  => 'unidade',
@@ -147,6 +139,8 @@ return [
             'url'  => 'users',
             'icon' => 'lock',
         ],
+        'CONFIGURAÇÕES DE CONTA',
+       
         [
             'text'    => 'Veiculo',
             'icon'    => 'share',

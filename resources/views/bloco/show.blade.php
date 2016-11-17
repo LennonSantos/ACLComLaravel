@@ -1,55 +1,28 @@
 @extends('adminlte::page')
 
- 
-
 @section('content')
-
 	<div class="row">
-
 	    <div class="col-lg-12 margin-tb">
-
 	        <div class="pull-left">
-
-	            <h2> Show Item</h2>
-
+	            <h2> DETALHES BLOCO</h2>
 	        </div>
-
 	        <div class="pull-right">
-
-	            <a class="btn btn-primary" href="{{ route('bloco.index') }}"> Back</a>
-
+	            <a class="btn btn-primary" href="{{ route('bloco.index') }}"> Voltar</a>
 	        </div>
-
 	    </div>
-
 	</div>
-
 	<div class="row">
-
 		<div class="col-xs-12 col-sm-12 col-md-12">
-
             <div class="form-group">
-
-                <strong>Title:</strong>
-
-                {{ $bloco->title }}
-
+                <strong>Nome do bloco:</strong>
+                {{ $bloco->nome_bloco }}
             </div>
-
         </div>
-
         <div class="col-xs-12 col-sm-12 col-md-12">
-
             <div class="form-group">
-
-                <strong>Description:</strong>
-
-                {{ $bloco->description }}
-
+                <strong>Quantidade de unidades:</strong>
+                {{ $bloco->quantidade_unidade }}
             </div>
-
         </div>
-
 	</div>
-
 @endsection

@@ -5,7 +5,7 @@ new Vue({
   el: '#manage-vue',
 
   data: {
-    items: [],
+    blocos: [],
     pagination: {
         total: 0, 
         per_page: 2,
@@ -16,8 +16,8 @@ new Vue({
     offset: 4,
     formErrors:{},
     formErrorsUpdate:{},
-    newItem : {'nome_bloco':'','quantidade_unidade':''},
-    fillItem : {'nome_bloco':'','quantidade_unidade':'','id':''}
+    newBloco : {'nome_bloco':'','quantidade_unidade':''},
+    fillBloco : {'nome_bloco':'','quantidade_unidade':'','id':''}
   },
 
   computed: {
@@ -65,19 +65,19 @@ new Vue({
           });
         },
 
-        createItem: function(){
+        createBloco: function(){
 
-		  var input = this.newItem;
+		  var input = this.newBloco;
 
 		  this.$http.post('/bloco',input).then((response) => {
 
 		    this.changePage(this.pagination.current_page);
 
-			this.newItem = {'nome_bloco':'','quantidade_unidade':''};
+			this.newBloco = {'nome_bloco':'','quantidade_unidade':''};
 
-			$("#create-item").modal('hide');
+			$("#create-bloco").modal('hide');
 
-			toastr.success('Item Created Successfully.', 'Success Alert', {timeOut: 5000});
+			toastr.success('Bloco criado com sucesso!', 'Success Alert', {timeOut: 5000});
 
 		  }, (response) => {
 
@@ -88,45 +88,45 @@ new Vue({
 	},
 
 
-      deleteItem: function(item){
+      deleteBloco: function(item){
 
         this.$http.delete('/bloco/'+item.id).then((response) => {
 
             this.changePage(this.pagination.current_page);
 
-            toastr.success('Item Deleted Successfully.', 'Success Alert', {timeOut: 5000});
+            toastr.success('Bloco deletado com sucesso!', 'Success Alert', {timeOut: 5000});
 
         });
 
       },
 
 
-      editItem: function(item){
+      editBloco: function(bloco){
 
-          this.fillItem.nome_bloco = item.nome_bloco;
+          this.fillBloco.nome_bloco = bloco.nome_bloco;
 
-          this.fillItem.id = item.id;
+          this.fillBloco.id = bloco.id;
 
-          this.fillItem.quantidade_unidade = item.quantidade_unidade;
+          this.fillBloco.quantidade_unidade = bloco.quantidade_unidade;
 
-          $("#edit-item").modal('show');
+          $("#edit-bloco").modal('show');
 
       },
 
 
-      updateItem: function(id){
+      updateBloco: function(id){
 
-        var input = this.fillItem;
+        var input = this.fillBloco;
 
-        this.$http.put('/vueitems/'+id,input).then((response) => {
+        this.$http.put('/bloco/'+id,input).then((response) => {
 
             this.changePage(this.pagination.current_page);
 
-            this.fillItem = {'title':'','description':'','id':''};
+            this.fillBloco = {'nome_bloco':'','quantidade_unidade':'','id':''};
 
-            $("#edit-item").modal('hide');
+            $("#edit-bloco").modal('hide');
 
-            toastr.success('Item Updated Successfully.', 'Success Alert', {timeOut: 5000});
+            toastr.success('Bloco atualizado com sucesso', 'Success Alert', {timeOut: 5000});
 
           }, (response) => {
 
