@@ -18,7 +18,7 @@ class CreateBlocoTable extends Migration
 
             $table->string('nome_bloco');
 
-            $table->integer('quantidade_apartamentos');
+            $table->integer('quantidade_unidade');
 
             $table->timestamps();
 

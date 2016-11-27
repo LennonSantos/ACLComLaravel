@@ -69,7 +69,7 @@ new Vue({
 
 		  var input = this.newBloco;
 
-		  this.$http.post('/bloco',input).then((response) => {
+		  this.$http.post('/bloco/create',input).then((response) => {
 
 		    this.changePage(this.pagination.current_page);
 
