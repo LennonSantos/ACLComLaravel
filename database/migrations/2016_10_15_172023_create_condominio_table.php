@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBlocosTable extends Migration
+class CreateCondominioTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +12,19 @@ class CreateBlocosTable extends Migration
      */
     public function up()
     {
-        Schema::create('blocos', function (Blueprint $table) {
+        Schema::create('condominios', function (Blueprint $table) {
 
             $table->increments('id');
 
-            $table->string('nome_bloco');
+            $table->string('logradouro');
 
-            $table->text('quantidade_unidade');
+            $table->string('bairro');
+
+            $table->string('cidade');
+
+            $table->string('estado');
+
+            $table->string('nome_condominio');
 
             $table->timestamps();
 
@@ -33,6 +38,6 @@ class CreateBlocosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('blocos');
+        Schema::drop("condominios");
     }
 }

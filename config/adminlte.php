@@ -108,35 +108,40 @@ return [
     */
 
     'menu' => [
-        'MENU PRINCIPAL',
+        'Gerencial',
         [
-            'text'        => 'Bloco',
-            'url'         => 'manage-bloco',
-            'icon'        => 'file',
+            'text' => 'Bloco',
+            'url'  => 'manage-bloco',
+            'icon' => 'file',
         ],
         [
             'text' => 'Unidade',
-            'url'  => 'unidade',
+            'url'  => 'manage-unidade',
             'icon' => 'user',
         ],
         [
             'text' => 'Morador',
-            'url'  => 'morador',
+            'url'  => 'manage-morador',
             'icon' => 'lock',
         ],
          [
             'text' => 'Veículo',
-            'url'  => 'veiculo',
+            'url'  => 'manage-veiculo',
             'icon' => 'lock',
         ],
          [
             'text' => 'Fornecedor',
-            'url'  => 'fornecedor',
+            'url'  => 'manage-fornecedor',
             'icon' => 'lock',
         ],
-         [
-            'text' => 'Usuario',
-            'url'  => 'users',
+        [
+            'text' => 'Funcionário',
+            'url'  => 'manage-funcionario',
+            'icon' => 'lock',
+        ],
+        [
+            'text' => 'Pet',
+            'url'  => 'manage-pet',
             'icon' => 'lock',
         ],
         'CONFIGURAÇÕES DE CONTA',
