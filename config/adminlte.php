@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'skin' => 'red',
+    'skin' => 'blue',
 
     /*
     |--------------------------------------------------------------------------
@@ -112,43 +112,43 @@ return [
         [
             'text' => 'Bloco',
             'url'  => 'manage-bloco',
-            'icon' => 'file',
+            'icon' => 'building',
         ],
         [
             'text' => 'Unidade',
             'url'  => 'manage-unidade',
-            'icon' => 'user',
+            'icon' => 'qrcode',
         ],
         [
             'text' => 'Morador',
             'url'  => 'manage-morador',
-            'icon' => 'lock',
+            'icon' => 'users',
         ],
          [
             'text' => 'Veículo',
             'url'  => 'manage-veiculo',
-            'icon' => 'lock',
+            'icon' => 'automobile',
         ],
          [
             'text' => 'Fornecedor',
             'url'  => 'manage-fornecedor',
-            'icon' => 'lock',
+            'icon' => 'cart-plus',
         ],
         [
             'text' => 'Funcionário',
             'url'  => 'manage-funcionario',
-            'icon' => 'lock',
+            'icon' => 'male',
         ],
         [
             'text' => 'Pet',
             'url'  => 'manage-pet',
-            'icon' => 'lock',
+            'icon' => 'paw',
         ],
         'CONFIGURAÇÕES DE CONTA',
        
         [
             'text'    => 'Permissões',
-            'icon'    => 'share',
+            'icon'    => 'lock',
             'submenu' => [
                 [
                     'text' => 'Permissões',
