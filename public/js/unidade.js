@@ -5,7 +5,7 @@ new Vue({
   el: '#manage-vue',
 
   data: {
-    blocos: [],
+    unidades: [],
     pagination: {
         total: 0, 
         per_page: 2,
@@ -16,8 +16,8 @@ new Vue({
     offset: 4,
     formErrors:{},
     formErrorsUpdate:{},
-    newBloco : {'nome_bloco':'','quantidade_unidade':''},
-    fillBloco : {'nome_bloco':'','quantidade_unidade':'','id':''}
+    newUnidade : {'numero_unidade':'','id_responsavel':'','metragem':'','quantidade_comodos':'','numero_matricula':'','situacao':'','id_bloco':''},
+    fillUnidade : {'numero_unidade':'','id_responsavel':'','metragem':'','quantidade_comodos':'','numero_matricula':'','situacao':'','id_bloco':'','id':''}
   },
 
   computed: {
@@ -53,31 +53,31 @@ new Vue({
     },
 
   ready : function(){
-  		this.getVueBlocos(this.pagination.current_page);
+  		this.getVueUnidades(this.pagination.current_page);
   },
 
   methods : {
 
-        getVueBlocos: function(page){
-          this.$http.get('/bloco?page='+page).then((response) => {
-            this.$set('blocos', response.data.data.data);
+        getVueUnidades: function(page){
+          this.$http.get('/unidade?page='+page).then((response) => {
+            this.$set('unidades', response.data.data.data);
             this.$set('pagination', response.data.pagination);
           });
         },
 
-        createBloco: function(){
+        createUnidade: function(){
 
-		  var input = this.newBloco;
+		  var input = this.newUnidade;
 
-		  this.$http.post('/bloco/create',input).then((response) => {
+		  this.$http.post('/unidade/create',input).then((response) => {
 
 		    this.changePage(this.pagination.current_page);
 
-			this.newBloco = {'nome_bloco':'','quantidade_unidade':''};
+			this.newUnidade = {'numero_unidade':'','id_responsavel':'','metragem':'','quantidade_comodos':'','numero_matricula':'','situacao':'','id_bloco':''};
 
-			$("#create-bloco").modal('hide');
+			$("#create-unidade").modal('hide');
 
-			toastr.success('Bloco criado com sucesso!', 'Success Alert', {timeOut: 5000});
+			toastr.success('Unidade criado com sucesso!', 'Success Alert', {timeOut: 5000});
 
 		  }, (response) => {
 
@@ -88,45 +88,45 @@ new Vue({
 	},
 
 
-      deleteBloco: function(item){
+      deleteUnidade: function(item){
 
-        this.$http.delete('/bloco/'+item.id).then((response) => {
+        this.$http.delete('/unidade/'+item.id).then((response) => {
 
             this.changePage(this.pagination.current_page);
 
-            toastr.success('Bloco deletado com sucesso!', 'Success Alert', {timeOut: 5000});
+            toastr.success('Unidade deletado com sucesso!', 'Success Alert', {timeOut: 5000});
 
         });
 
       },
 
 
-      editBloco: function(bloco){
+      editUnidade: function(unidade){
 
-          this.fillBloco.nome_bloco = bloco.nome_bloco;
+          this.fillUnidade.nome_bloco = bloco.nome_bloco;
 
-          this.fillBloco.id = bloco.id;
+          this.fillUnidade.id = bloco.id;
 
-          this.fillBloco.quantidade_unidade = bloco.quantidade_unidade;
+          this.fillUnidade.quantidade_unidade = bloco.quantidade_unidade;
 
-          $("#edit-bloco").modal('show');
+          $("#edit-unidade").modal('show');
 
       },
 
 
-      updateBloco: function(id){
+      updateUnidade: function(id){
 
-        var input = this.fillBloco;
+        var input = this.fillUnidade;
 
-        this.$http.put('/bloco/'+id,input).then((response) => {
+        this.$http.put('/unidade/'+id,input).then((response) => {
 
             this.changePage(this.pagination.current_page);
 
-            this.fillBloco = {'nome_bloco':'','quantidade_unidade':'','id':''};
+            this.fillUnidade = {'numero_unidade':'','id_responsavel':'','metragem':'','quantidade_comodos':'','numero_matricula':'','situacao':'','id_bloco':'','id':''};
 
-            $("#edit-bloco").modal('hide');
+            $("#edit-unidade").modal('hide');
 
-            toastr.success('Bloco atualizado com sucesso', 'Success Alert', {timeOut: 5000});
+            toastr.success('Unidade atualizado com sucesso', 'Success Alert', {timeOut: 5000});
 
           }, (response) => {
 
@@ -141,7 +141,7 @@ new Vue({
 
           this.pagination.current_page = page;
 
-          this.getVueBlocos(page);
+          this.getVueUnidades(page);
 
       }
 

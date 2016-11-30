@@ -9,8 +9,8 @@
 		        </div>
 		        <div class="pull-right">
 		        	@permission(('item-create'))
-					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#create-bloco">
-				  		Criar bloco
+					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#create-unidade">
+				  		Criar Unidade
 					</button>
 					@endpermission
 		        </div>
@@ -21,19 +21,29 @@
 
 		<table class="table table-bordered">
 			<tr>
-				<th>Nome do bloco</th>
-				<th>Qauntidade de unidades</th>
+				<th>Nº unidade</th>
+				<th>Responsável</th>
+				<th>Metragem</th>
+				<th>Qauntidade de comôdos</th>
+				<th>Nº matrícula</th>
+				<th>Situação</th>
+				<th>Bloco</th>
 				<th width="200px">Action</th>
 			</tr>
-			<tr v-for="bloco in blocos">
-				<td>@{{ bloco.nome_bloco }}</td>
-				<td>@{{ bloco.quantidade_unidade }}</td>
+			<tr v-for="unidade in unidades">
+				<td>@{{ unidade.numero_unidade }}</td>
+				<td>@{{ unidade.responsavel }}</td>
+				<td>@{{ unidade.metragem }}</td>
+				<td>@{{ unidade.quantidade_comodos }}</td>
+				<td>@{{ unidade.numero_matricula }}</td>
+				<td>@{{ unidade.situacao }}</td>
+				<td>@{{ unidade.id_bloco }}</td>
 				<td>	
 					@permission(('item-edit'))
-				     	<button class="btn btn-primary" @click.prevent="editBloco(bloco)">Edit</button>
+				     	<button class="btn btn-primary" @click.prevent="editUnidade(unidade)">Edit</button>
 				    @endpermission
 				    @permission(('item-delete'))
-				    	<button class="btn btn-danger" @click.prevent="deleteBloco(bloco)">Delete</button>
+				    	<button class="btn btn-danger" @click.prevent="deleteUnidade(unidade)">Delete</button>
 					@endpermission
 				</td>
 			</tr>
@@ -65,15 +75,15 @@
 
 	    <!-- Create Item Modal -->
 
-		<div class="modal fade" id="create-bloco" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal fade" id="create-unidade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  	<div class="modal-dialog" role="document">
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-		        		<h4 class="modal-title" id="myModalLabel">Criar bloco</h4>
+		        		<h4 class="modal-title" id="myModalLabel">Criar Unidade</h4>
 		      		</div>
 		      		<div class="modal-body">
-		      			<form method="POST" enctype="multipart/form-data" v-on:submit.prevent="createBloco">
+		      			<form method="POST" enctype="multipart/form-data" v-on:submit.prevent="createUnidade">
 		      				<div class="form-group">
 								<label for="title">Nome do bloco:</label>
 								<input type="text" name="nome_bloco" class="form-control" v-model="newBloco.nome_bloco" />
@@ -129,5 +139,5 @@
         <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
-	<script type="text/javascript" src="/js/bloco.js"></script>
+	<script type="text/javascript" src="/js/unidade.js"></script>
 @endsection

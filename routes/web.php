@@ -45,7 +45,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::put('bloco/{id}',['uses'=>'BlocoController@update','middleware' => ['permission:role-edit']]);
 	Route::delete('bloco/{id}',['uses'=>'BlocoController@destroy','middleware' => ['permission:role-delete']]);
 
-	Route::get('manage-unidade',['as'=>'bloco.index','uses'=>'UnidadeController@manageunidade','middleware' => ['permission:role-list|role-create|role-edit|role-delete']]);
+	Route::get('manage-unidade',['as'=>'unidade.index','uses'=>'UnidadeController@manageunidade','middleware' => ['permission:role-list|role-create|role-edit|role-delete']]);
 	Route::get('unidade',['uses'=>'UnidadeController@index','middleware' => ['permission:role-list|role-create|role-edit|role-delete']]);
 	Route::get('unidade/create',['uses'=>'UnidadeController@create','middleware' => ['permission:role-create']]);
 	Route::post('unidade/create',['uses'=>'UnidadeController@store','middleware' => ['permission:role-list|role-create|role-edit|role-delete']]);

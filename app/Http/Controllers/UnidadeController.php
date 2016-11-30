@@ -17,28 +17,28 @@ class UnidadeController extends Controller
     public function index(Request $request)
     {
 
-        $blocos = Bloco::latest()->paginate(5);
+        $unidades = Unidade::latest()->paginate(5);
 
 
         $response = [
 
             'pagination' => [
 
-                'total' => $blocos->total(),
+                'total' => $unidades->total(),
 
-                'per_page' => $blocos->perPage(),
+                'per_page' => $unidades->perPage(),
 
-                'current_page' => $blocos->currentPage(),
+                'current_page' => $unidades->currentPage(),
 
-                'last_page' => $blocos->lastPage(),
+                'last_page' => $unidades->lastPage(),
 
-                'from' => $blocos->firstItem(),
+                'from' => $unidades->firstItem(),
 
-                'to' => $blocos->lastItem()
+                'to' => $unidades->lastItem()
 
             ],
 
-            'data' => $blocos
+            'data' => $unidades
 
         ];
 
@@ -60,7 +60,7 @@ class UnidadeController extends Controller
         ]);
 
 
-        $create = Bloco::create($request->all());
+        $create = Unidade::create($request->all());
 
 
         return response()->json($create);
@@ -83,7 +83,7 @@ class UnidadeController extends Controller
         ]);
 
 
-        $edit = Bloco::find($id)->update($request->all());
+        $edit = Unidade::find($id)->update($request->all());
 
 
         return response()->json($edit);
@@ -96,7 +96,7 @@ class UnidadeController extends Controller
 
     {
 
-        Bloco::find($id)->delete();
+        Unidade::find($id)->delete();
 
         return response()->json(['done']);
 
