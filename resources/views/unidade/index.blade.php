@@ -85,14 +85,39 @@
 		      		<div class="modal-body">
 		      			<form method="POST" enctype="multipart/form-data" v-on:submit.prevent="createUnidade">
 		      				<div class="form-group">
-								<label for="title">Nome do bloco:</label>
-								<input type="text" name="nome_bloco" class="form-control" v-model="newBloco.nome_bloco" />
-								<span v-if="formErrors['nome_bloco']" class="error text-danger">@{{ formErrors['nome_bloco'] }}</span>
+								<label for="title">Número da unidade:</label>
+								<input type="text" name="numero_unidade" class="form-control" v-model="newUnidade.numero_unidade" />
+								<span v-if="formErrors['numero_unidade']" class="error text-danger">@{{ formErrors['numero_unidade'] }}</span>
 							</div>
 							<div class="form-group">
-								<label for="title">Quantidade de unidades:</label>
-								<input type="text" name="quantidade_unidade" class="form-control" v-model="newBloco.quantidade_unidade" />
-								<span v-if="formErrors['quantidade_unidade']" class="error text-danger">@{{ formErrors['quantidade_unidade'] }}</span>
+								<label for="title">Responsável:</label>
+								<input type="text" name="id_responsavel" class="form-control" v-model="newUnidade.id_responsavel" />
+								<span v-if="formErrors['id_responsavel']" class="error text-danger">@{{ formErrors['id_responsavel'] }}</span>
+							</div>
+							<div class="form-group">
+								<label for="title">Metragem:</label>
+								<input type="text" name="metragem" class="form-control" v-model="newUnidade.metragem" />
+								<span v-if="formErrors['metragem']" class="error text-danger">@{{ formErrors['metragem'] }}</span>
+							</div>
+							<div class="form-group">
+								<label for="title">Quantidade de comodos:</label>
+								<input type="text" name="quantidade_comodos" class="form-control" v-model="newUnidade.quantidade_comodos" />
+								<span v-if="formErrors['quantidade_comodos']" class="error text-danger">@{{ formErrors['quantidade_comodos'] }}</span>
+							</div>
+							<div class="form-group">
+								<label for="title">Número da matrícula:</label>
+								<input type="text" name="numero_matricula" class="form-control" v-model="newUnidade.numero_matricula" />
+								<span v-if="formErrors['numero_matricula']" class="error text-danger">@{{ formErrors['numero_matricula'] }}</span>
+							</div>
+							<div class="form-group">
+								<label for="title">Situação:</label>
+								<input type="text" name="situacao" class="form-control" v-model="newUnidade.situacao" />
+								<span v-if="formErrors['situacao']" class="error text-danger">@{{ formErrors['situacao'] }}</span>
+							</div>
+							<div class="form-group">
+								<label for="title">Bloco:</label>
+								<input type="text" name="id_bloco" class="form-control" v-model="newUnidade.id_bloco" />
+								<span v-if="formErrors['id_bloco']" class="error text-danger">@{{ formErrors['id_bloco'] }}</span>
 							</div>
 							<div class="form-group">
 								<button type="submit" class="btn btn-success">Salvar</button>
@@ -114,16 +139,16 @@
 		        		<h4 class="modal-title" id="myModalLabel">Editar Bloco</h4>
 		      		</div>
 		      		<div class="modal-body">
-		      			<form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updateBloco(fillBloco.id)">
+		      			<form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updateBloco(fillUnidade.id)">
 			      			<div class="form-group">
-								<label for="nome_bloco">Nome do bloco:</label>
-								<input type="text" name="nome_bloco" class="form-control" v-model="fillBloco.nome_bloco" />
-								<span v-if="formErrorsUpdate['nome_bloco']" class="error text-danger">@{{ formErrorsUpdate['nome_bloco'] }}</span>
+								<label for="numero_unidade">Número da unidade:</label>
+								<input type="text" name="numero_unidade" class="form-control" v-model="fillUnidade.numero_unidade" />
+								<span v-if="formErrorsUpdate['numero_unidade']" class="error text-danger">@{{ formErrorsUpdate['numero_unidade'] }}</span>
 							</div>
 							<div class="form-group">
-								<label for="title">Quantidade de unidades:</label>
-								<input type="text" name="quantidade_unidade" class="form-control" v-model="fillBloco.quantidade_unidade" />
-								<span v-if="formErrorsUpdate['quantidade_unidade']" class="error text-danger">@{{ formErrorsUpdate['quantidade_unidade'] }}</span>
+								<label for="title">Responsável:</label>
+								<input type="text" name="id_responsavel" class="form-control" v-model="fillUnidade.id_responsavel" />
+								<span v-if="formErrorsUpdate['id_responsavel']" class="error text-danger">@{{ formErrorsUpdate['id_responsavel'] }}</span>
 							</div>
 							<div class="form-group">
 								<button type="submit" class="btn btn-success">Salvar</button>
