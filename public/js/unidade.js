@@ -104,11 +104,21 @@ new Vue({
 
       editUnidade: function(unidade){
 
-          this.fillUnidade.nome_bloco = bloco.nome_bloco;
+          this.fillUnidade.id = unidade.id;
 
-          this.fillUnidade.id = bloco.id;
+          this.fillUnidade.id_bloco = unidade.id_bloco;
 
-          this.fillUnidade.quantidade_unidade = bloco.quantidade_unidade;
+          this.fillUnidade.id_responsavel = unidade.id_responsavel;
+
+          this.fillUnidade.metragem = unidade.metragem;
+
+          this.fillUnidade.quantidade_comodos = unidade.quantidade_comodos;
+
+          this.fillUnidade.numero_matricula = unidade.numero_matricula;
+          
+          this.fillUnidade.situacao = unidade.situacao;
+
+          this.fillUnidade.numero_unidade = unidade.numero_unidade;
 
           $("#edit-unidade").modal('show');
 

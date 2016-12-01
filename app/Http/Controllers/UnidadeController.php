@@ -75,9 +75,9 @@ class UnidadeController extends Controller
 
         $this->validate($request, [
 
-            'nome_bloco' => 'required',
+            'id_bloco' => 'required',
 
-            'quantidade_unidade' => 'required',
+            'numero_unidade' => 'required',
 
         ]);
 
