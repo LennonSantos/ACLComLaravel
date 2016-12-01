@@ -54,6 +54,15 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::put('unidade/{id}',['uses'=>'UnidadeController@update','middleware' => ['permission:role-edit']]);
 	Route::delete('unidade/{id}',['uses'=>'UnidadeController@destroy','middleware' => ['permission:role-delete']]);
 
+	Route::get('manage-morador',['as'=>'morador.index','uses'=>'MoradorController@managemorador','middleware' => ['permission:role-list|role-create|role-edit|role-delete']]);
+	Route::get('morador',['uses'=>'MoradorController@index','middleware' => ['permission:role-list|role-create|role-edit|role-delete']]);
+	Route::get('morador/create',['uses'=>'MoradorController@create','middleware' => ['permission:role-create']]);
+	Route::post('morador/create',['uses'=>'MoradorController@store','middleware' => ['permission:role-list|role-create|role-edit|role-delete']]);
+	Route::get('morador/{id}',['uses'=>'MoradorController@show']);
+	Route::get('morador/{id}/edit',['uses'=>'MoradorController@edit','middleware' => ['permission:role-edit']]);
+	Route::put('morador/{id}',['uses'=>'MoradorController@update','middleware' => ['permission:role-edit']]);
+	Route::delete('morador/{id}',['uses'=>'MoradorController@destroy','middleware' => ['permission:role-delete']]);
+
 
 });
 
