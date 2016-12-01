@@ -11,14 +11,13 @@ class UnidadeController extends Controller
 
     public function manageUnidade()
     {
-        
-        return view('unidade.index',compact('unidades'));
+        return view('unidade.index');
     }
 
     public function index(Request $request)
     {
 
-        $unidades = Unidade::latest()->paginate(5);
+        $unidades = Unidade::with(['bloco'])->paginate(2);
 
 
         $response = [
