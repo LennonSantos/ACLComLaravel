@@ -11,7 +11,8 @@ class UnidadeController extends Controller
 
     public function manageUnidade()
     {
-        return view('unidade.index');
+        
+        return view('unidade.index',compact('unidades'));
     }
 
     public function index(Request $request)
@@ -42,7 +43,6 @@ class UnidadeController extends Controller
 
         ];
 
-
         return response()->json($response);
 
     }
@@ -51,13 +51,13 @@ class UnidadeController extends Controller
     public function store(Request $request)
     {
 
-        /*$this->validate($request, [
+        $this->validate($request, [
 
             'id_bloco' => 'required',
 
             'numero_unidade' => 'required',
 
-        ]);*/
+        ]);
 
 
         $create = Unidade::create($request->all());

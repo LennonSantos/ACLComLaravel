@@ -37,7 +37,7 @@
 				<td>@{{ unidade.quantidade_comodos }}</td>
 				<td>@{{ unidade.numero_matricula }}</td>
 				<td>@{{ unidade.situacao }}</td>
-				<td>@{{ unidade.id_bloco }}</td>
+				<td>@{{ unidade.bloco.nome_bloco }}</td>
 				<td>	
 					@permission(('item-edit'))
 				     	<button class="btn btn-primary" @click.prevent="editUnidade(unidade)">Edit</button>

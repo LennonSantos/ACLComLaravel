@@ -4,6 +4,7 @@ new Vue({
 
   el: '#manage-vue',
 
+
   data: {
     unidades: [],
     pagination: {
