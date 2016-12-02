@@ -17,7 +17,7 @@ class UnidadeController extends Controller
     public function index(Request $request)
     {
 
-        $unidades = Unidade::with(['bloco'])->paginate(2);
+        $unidades = Unidade::with(['bloco','morador'])->paginate(25);
 
 
         $response = [

@@ -5,12 +5,12 @@
 		<div class="row">
 		    <div class="col-lg-12 margin-tb">
 		        <div class="pull-left">
-		            <h2>UNIDADES</h2>
+		            <h2>MORADORES</h2>
 		        </div>
 		        <div class="pull-right">
 		        	@permission(('item-create'))
-					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#create-unidade">
-				  		Criar Unidade
+					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#create-morador">
+				  		Criar Morador
 					</button>
 					@endpermission
 		        </div>
@@ -30,7 +30,7 @@
 				<th>Bloco</th>
 				<th width="200px">Action</th>
 			</tr>
-			<tr v-for="unidade in unidades">
+			<tr v-for="morador in moradores">
 				<td>@{{ unidade.numero_unidade }}</td>
 				<td>@{{ unidade.responsavel }}</td>
 				<td>@{{ unidade.metragem }}</td>
@@ -40,10 +40,10 @@
 				<td>@{{ unidade.bloco.nome_bloco }}</td>
 				<td>	
 					@permission(('item-edit'))
-				     	<button class="btn btn-primary" @click.prevent="editUnidade(unidade)">Edit</button>
+				     	<button class="btn btn-primary" @click.prevent="editMorador(morador)">Edit</button>
 				    @endpermission
 				    @permission(('item-delete'))
-				    	<button class="btn btn-danger" @click.prevent="deleteUnidade(unidade)">Delete</button>
+				    	<button class="btn btn-danger" @click.prevent="deleteMorador(morador)">Delete</button>
 					@endpermission
 				</td>
 			</tr>
@@ -75,12 +75,12 @@
 
 	    <!-- Create Item Modal -->
 
-		<div class="modal fade" id="create-unidade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal fade" id="create-morador" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  	<div class="modal-dialog" role="document">
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-		        		<h4 class="modal-title" id="myModalLabel">Criar Unidade</h4>
+		        		<h4 class="modal-title" id="myModalLabel">Criar Morador</h4>
 		      		</div>
 		      		<div class="modal-body">
 		      			<form method="POST" enctype="multipart/form-data" v-on:submit.prevent="createUnidade">
@@ -130,13 +130,13 @@
 
 		<!-- Edit Item Modal -->
 
-		<div class="modal fade" id="edit-unidade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal fade" id="edit-morador" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
 			<div class="modal-dialog" role="document">
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-		        		<h4 class="modal-title" id="myModalLabel">Editar Bloco</h4>
+		        		<h4 class="modal-title" id="myModalLabel">Editar Morador</h4>
 		      		</div>
 		      		<div class="modal-body">
 		      			<form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updateUnidade(fillUnidade.id)">

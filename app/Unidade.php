@@ -12,4 +12,9 @@ class Unidade extends Model
     {
         return $this->belongsTo('App\Bloco', 'id_bloco');
     }
+
+    public function morador()
+    {
+        return $this->belongsTo('App\Morador', 'id_responsavel');
+    }
 }

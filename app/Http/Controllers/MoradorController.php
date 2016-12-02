@@ -17,7 +17,7 @@ class MoradorController extends Controller
     public function index(Request $request)
     {
 
-        $moradores = Morador::with(['bloco'])->paginate(2);
+        $moradores = Morador::with(['bloco'])->paginate(25);
 
 
         $response = [
@@ -50,13 +50,13 @@ class MoradorController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, [
+        /*$this->validate($request, [
 
             'id_bloco' => 'required',
 
             'numero_unidade' => 'required',
 
-        ]);
+        ]);*/
 
 
         $create = Morador::create($request->all());
@@ -73,13 +73,13 @@ class MoradorController extends Controller
 
     {
 
-        $this->validate($request, [
+        /*$this->validate($request, [
 
             'id_bloco' => 'required',
 
             'numero_unidade' => 'required',
 
-        ]);
+        ]);*/
 
 
         $edit = Morador::find($id)->update($request->all());

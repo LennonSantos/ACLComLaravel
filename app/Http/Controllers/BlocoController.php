@@ -17,7 +17,7 @@ class BlocoController extends Controller
     public function index(Request $request)
     {
 
-        $blocos = Bloco::latest()->paginate(5);
+        $blocos = Bloco::latest()->paginate(25);
 
 
         $response = [

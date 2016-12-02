@@ -32,7 +32,7 @@
 			</tr>
 			<tr v-for="unidade in unidades">
 				<td>@{{ unidade.numero_unidade }}</td>
-				<td>@{{ unidade.responsavel }}</td>
+				<td>@{{ unidade.morador.nome_completo }}</td>
 				<td>@{{ unidade.metragem }}</td>
 				<td>@{{ unidade.quantidade_comodos }}</td>
 				<td>@{{ unidade.numero_matricula }}</td>
@@ -136,7 +136,7 @@
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-		        		<h4 class="modal-title" id="myModalLabel">Editar Bloco</h4>
+		        		<h4 class="modal-title" id="myModalLabel">Editar Unidade</h4>
 		      		</div>
 		      		<div class="modal-body">
 		      			<form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updateUnidade(fillUnidade.id)">

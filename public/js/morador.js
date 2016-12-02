@@ -6,7 +6,7 @@ new Vue({
 
 
   data: {
-    unidades: [],
+    moradores: [],
     pagination: {
         total: 0, 
         per_page: 2,
@@ -17,8 +17,8 @@ new Vue({
     offset: 4,
     formErrors:{},
     formErrorsUpdate:{},
-    newUnidade : {'numero_unidade':'','id_responsavel':'','metragem':'','quantidade_comodos':'','numero_matricula':'','situacao':'','id_bloco':''},
-    fillUnidade : {'numero_unidade':'','id_responsavel':'','metragem':'','quantidade_comodos':'','numero_matricula':'','situacao':'','id_bloco':'','id':''}
+    newMorador : {'id_unidade':'','data_entrada':'','nome_completo':'','cpf':'','rg':'','telefone_1':'','telefone_2':'','telefone_3':'','profissao':'','data_nascimento':'','sexo':'','email':''},
+    fillMorador : {'id_unidade':'','data_entrada':'','nome_completo':'','cpf':'','rg':'','telefone_1':'','telefone_2':'','telefone_3':'','profissao':'','data_nascimento':'','sexo':'','email':'','id':''}
   },
 
   computed: {
@@ -54,31 +54,31 @@ new Vue({
     },
 
   ready : function(){
-  		this.getVueUnidades(this.pagination.current_page);
+  		this.getVueMoradores(this.pagination.current_page);
   },
 
   methods : {
 
-        getVueUnidades: function(page){
-          this.$http.get('/unidade?page='+page).then((response) => {
-            this.$set('unidades', response.data.data.data);
+        getVueMoradores: function(page){
+          this.$http.get('/morador?page='+page).then((response) => {
+            this.$set('moradores', response.data.data.data);
             this.$set('pagination', response.data.pagination);
           });
         },
 
-        createUnidade: function(){
+        createMorador: function(){
 
-		  var input = this.newUnidade;
+		  var input = this.newMorador;
 
-		  this.$http.post('/unidade/create',input).then((response) => {
+		  this.$http.post('/morador/create',input).then((response) => {
 
 		    this.changePage(this.pagination.current_page);
 
-			this.newUnidade = {'numero_unidade':'','id_responsavel':'','metragem':'','quantidade_comodos':'','numero_matricula':'','situacao':'','id_bloco':''};
+			this.newMorador = {'id_unidade':'','data_entrada':'','nome_completo':'','cpf':'','rg':'','telefone_1':'','telefone_2':'','telefone_3':'','profissao':'','data_nascimento':'','sexo':'','email':''};
 
-			$("#create-unidade").modal('hide');
+			$("#create-morador").modal('hide');
 
-			toastr.success('Unidade criado com sucesso!', 'Success Alert', {timeOut: 5000});
+			toastr.success('Morador criado com sucesso!', 'Success Alert', {timeOut: 5000});
 
 		  }, (response) => {
 
@@ -89,55 +89,65 @@ new Vue({
 	},
 
 
-      deleteUnidade: function(item){
+      deleteMorador: function(item){
 
-        this.$http.delete('/unidade/'+item.id).then((response) => {
+        this.$http.delete('/morador/'+item.id).then((response) => {
 
             this.changePage(this.pagination.current_page);
 
-            toastr.success('Unidade deletado com sucesso!', 'Success Alert', {timeOut: 5000});
+            toastr.success('Morador deletado com sucesso!', 'Success Alert', {timeOut: 5000});
 
         });
 
       },
 
 
-      editUnidade: function(unidade){
+      editMorador: function(unidade){
 
-          this.fillUnidade.id = unidade.id;
+          this.fillMorador.id = unidade.id;
 
-          this.fillUnidade.id_bloco = unidade.id_bloco;
+          this.fillMorador.telefone_2 = unidade.telefone_2;
 
-          this.fillUnidade.id_responsavel = unidade.id_responsavel;
+          this.fillMorador.data_entrada = unidade.data_entrada;
 
-          this.fillUnidade.metragem = unidade.metragem;
+          this.fillMorador.nome_completo = unidade.nome_completo;
 
-          this.fillUnidade.quantidade_comodos = unidade.quantidade_comodos;
+          this.fillMorador.cpf = unidade.cpf;
 
-          this.fillUnidade.numero_matricula = unidade.numero_matricula;
+          this.fillMorador.rg = unidade.rg;
           
-          this.fillUnidade.situacao = unidade.situacao;
+          this.fillMorador.telefone_1 = unidade.telefone_1;
 
-          this.fillUnidade.numero_unidade = unidade.numero_unidade;
+          this.fillMorador.telefone_3 = unidade.telefone_3;
 
-          $("#edit-unidade").modal('show');
+          this.fillMorador.profissao = unidade.profissao;
+
+          this.fillMorador.data_nascimento = unidade.data_nascimento;
+
+          this.fillMorador.sexo = unidade.sexo;
+
+          this.fillMorador.email = unidade.email;
+
+          this.fillMorador.id_unidade = unidade.id_unidade;
+
+          $("#edit-morador").modal('show');
 
       },
 
 
-      updateUnidade: function(id){
+      updateMorador: function(id){
 
-        var input = this.fillUnidade;
+        var input = this.fillMorador;
 
-        this.$http.put('/unidade/'+id,input).then((response) => {
+        this.$http.put('/morador/'+id,input).then((response) => {
 
             this.changePage(this.pagination.current_page);
 
-            this.fillUnidade = {'numero_unidade':'','id_responsavel':'','metragem':'','quantidade_comodos':'','numero_matricula':'','situacao':'','id_bloco':'','id':''};
+            this.fillMorador = {'id_unidade':'','data_entrada':'','nome_completo':'','cpf':'','rg':'','telefone_1':'','telefone_2':'','telefone_3':'','profissao':'','data_nascimento':'','sexo':'','email':'','id':''}
 
-            $("#edit-unidade").modal('hide');
+            $("#edit-morador").modal('hide');
 
-            toastr.success('Unidade atualizado com sucesso', 'Success Alert', {timeOut: 5000});
+            toastr.success('Morador atualizado com sucesso', 'Success Alert', {timeOut: 5000});
 
           }, (response) => {
 
@@ -152,7 +162,7 @@ new Vue({
 
           this.pagination.current_page = page;
 
-          this.getVueUnidades(page);
+          this.getVueMoradores(page);
 
       }
 
