@@ -17,7 +17,7 @@ class MoradorController extends Controller
     public function index(Request $request)
     {
 
-        $moradores = Morador::with(['bloco'])->paginate(25);
+        $moradores = Morador::with(['unidade'])->paginate(25);
 
 
         $response = [

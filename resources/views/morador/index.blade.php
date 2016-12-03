@@ -31,13 +31,13 @@
 				<th width="200px">Action</th>
 			</tr>
 			<tr v-for="morador in moradores">
-				<td>@{{ unidade.numero_unidade }}</td>
-				<td>@{{ unidade.responsavel }}</td>
-				<td>@{{ unidade.metragem }}</td>
-				<td>@{{ unidade.quantidade_comodos }}</td>
-				<td>@{{ unidade.numero_matricula }}</td>
-				<td>@{{ unidade.situacao }}</td>
-				<td>@{{ unidade.bloco.nome_bloco }}</td>
+				<td>@{{ morador.id_unidade }}</td>
+				<td>@{{ morador.data_entrada }}</td>
+				<td>@{{ morador.metragem }}</td>
+				<td>@{{ morador.quantidade_comodos }}</td>
+				<td>@{{ morador.numero_matricula }}</td>
+				<td>@{{ morador.situacao }}</td>
+				<td>@{{ morador.bloco.nome_bloco }}</td>
 				<td>	
 					@permission(('item-edit'))
 				     	<button class="btn btn-primary" @click.prevent="editMorador(morador)">Edit</button>
