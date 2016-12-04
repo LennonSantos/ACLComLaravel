@@ -96,7 +96,12 @@
 		      			<form method="POST" enctype="multipart/form-data" v-on:submit.prevent="createMorador">
 		      				<div class="form-group">
 								<label for="title">Número da unidade:</label>
-								<input type="text" name="id_unidade" class="form-control" v-model="newMorador.id_unidade" />
+								<select class="form-control select" name="id_responsavel" v-model="newMorador.id_unidade">
+									<option value="0">Selecione uma opção</option>
+                                    @foreach($unidades as $unidade)
+                                        <option value="{{$unidade->id}}">{{$unidade->numero_unidade}}</option>
+                                    @endforeach
+								</select>
 								<span v-if="formErrors['id_unidade']" class="error text-danger">@{{ formErrors['id_unidade'] }}</span>
 							</div>
 							<div class="form-group">
@@ -177,7 +182,13 @@
 		      			<form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updateMorador(fillMorador.id)">
 			      			<div class="form-group">
 								<label for="title">Número da unidade:</label>
-								<input type="text" name="id_unidade" class="form-control" v-model="fillMorador.id_unidade" />
+								<select class="form-control select" name="id_unidade" v-model="fillMorador.id_unidade">
+                                    <option value="0">Selecione uma opção</option>
+                                    @foreach($unidades as $unidade)
+                                        <option v-if="morador.id_unidade == {{$unidade->id}}" value="{{$unidade->id}}" selected>{{$unidade->numero_unidade}}</option>
+                                        <option v-else value="{{$unidade->id}}" >{{$unidade->numero_unidade}}</option>
+                                    @endforeach
+                                </select>
 								<span v-if="formErrors['id_unidade']" class="error text-danger">@{{ formErrors['id_unidade'] }}</span>
 							</div>
 							<div class="form-group">

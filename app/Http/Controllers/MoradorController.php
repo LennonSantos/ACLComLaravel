@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Morador;
+use App\Unidade;
 
 class MoradorController extends Controller
 {
 
     public function manageMorador()
     {
-        return view('morador.index');
+        $unidades = Unidade::all();
+        return view('morador.index', compact('unidades'));
     }
 
     public function index(Request $request)
