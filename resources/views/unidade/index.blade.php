@@ -32,7 +32,8 @@
 			</tr>
 			<tr v-for="unidade in unidades">
 				<td>@{{ unidade.numero_unidade }}</td>
-				<td>@{{ unidade.morador.nome_completo }}</td>
+				<td v-if="unidade.id_responsavel <= 0">Não possui responsável</td>
+				<td v-else>@{{ unidade.morador.nome_completo }}</td>
 				<td>@{{ unidade.metragem }}</td>
 				<td>@{{ unidade.quantidade_comodos }}</td>
 				<td>@{{ unidade.numero_matricula }}</td>
@@ -91,8 +92,13 @@
 							</div>
 							<div class="form-group">
 								<label for="title">Responsável:</label>
-								<input type="text" name="id_responsavel" class="form-control" v-model="newUnidade.id_responsavel" />
-								<span v-if="formErrors['id_responsavel']" class="error text-danger">@{{ formErrors['id_responsavel'] }}</span>
+								<select class="form-control select" name="id_responsavel" v-model="newUnidade.id_responsavel">
+									<option value="0">Selecione uma opção</option>
+                                    @foreach($moradores as $morador)
+                                        <option value="{{$morador->id}}">{{$morador->nome_completo}}</option>
+                                    @endforeach
+								</select>
+								<span v-if="formErrors['id_responsavel']" class="error text-danger">@{{ formErrors['id_responsavel'] }}</span>								
 							</div>
 							<div class="form-group">
 								<label for="title">Metragem:</label>
@@ -116,8 +122,13 @@
 							</div>
 							<div class="form-group">
 								<label for="title">Bloco:</label>
-								<input type="text" name="id_bloco" class="form-control" v-model="newUnidade.id_bloco" />
-								<span v-if="formErrors['id_bloco']" class="error text-danger">@{{ formErrors['id_bloco'] }}</span>
+								<select class="form-control select" name="id_bloco" v-model="newUnidade.id_bloco">
+                                    <option value="0">Selecione uma opção</option>
+                                    @foreach($blocos as $bloco)
+                                        <option value="{{$bloco->id}}">{{$bloco->nome_bloco}}</option>
+                                    @endforeach
+                                </select>
+                                <span v-if="formErrors['id_bloco']" class="error text-danger">@{{ formErrors['id_bloco'] }}</span>
 							</div>
 							<div class="form-group">
 								<button type="submit" class="btn btn-success">Salvar</button>
@@ -147,7 +158,13 @@
 							</div>
 							<div class="form-group">
 								<label for="title">Responsável:</label>
-								<input type="text" name="id_responsavel" class="form-control" v-model="fillUnidade.id_responsavel" />
+								<select class="form-control select" name="id_responsavel" v-model="fillUnidade.id_responsavel">
+                                    <option value="0">Selecione uma opção</option>
+                                    @foreach($moradores as $morador)
+                                        <option v-if="unidade.id_responsavel == {{$morador->id}}" value="{{$morador->id}}" selected>{{$morador->nome_completo}}</option>
+                                        <option v-else value="{{$morador->id}}" >{{$morador->nome_completo}}</option>
+                                    @endforeach
+                                </select>
 								<span v-if="formErrors['id_responsavel']" class="error text-danger">@{{ formErrors['id_responsavel'] }}</span>
 							</div>
 							<div class="form-group">
@@ -172,7 +189,13 @@
 							</div>
 							<div class="form-group">
 								<label for="title">Bloco:</label>
-								<input type="text" name="id_bloco" class="form-control" v-model="fillUnidade.id_bloco" />
+								<select class="form-control select" name="id_bloco" v-model="fillUnidade.id_bloco">
+                                    <option value="0">Selecione uma opção</option>
+                                    @foreach($blocos as $bloco)
+                                        <option v-if="unidade.id_bloco == {{$bloco->id}}" value="{{$bloco->id}}" selected>{{$bloco->nome_bloco}}</option>
+                                        <option v-else value="{{$bloco->id}}">{{$bloco->nome_bloco}}</option>
+                                    @endforeach
+                                </select>
 								<span v-if="formErrors['id_bloco']" class="error text-danger">@{{ formErrors['id_bloco'] }}</span>
 							</div>
 							<div class="form-group">

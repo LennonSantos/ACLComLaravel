@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Unidade;
+use App\Morador;
+use App\Bloco;
+
 
 class UnidadeController extends Controller
 {
 
     public function manageUnidade()
     {
-        return view('unidade.index');
+
+        $moradores = Morador::all();
+        $blocos = Bloco::all();
+        return view('unidade.index',compact('moradores','blocos'));
     }
 
     public function index(Request $request)
