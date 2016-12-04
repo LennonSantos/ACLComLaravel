@@ -22,22 +22,32 @@
 		<table class="table table-bordered">
 			<tr>
 				<th>Nº unidade</th>
-				<th>Responsável</th>
-				<th>Metragem</th>
-				<th>Qauntidade de comôdos</th>
-				<th>Nº matrícula</th>
-				<th>Situação</th>
-				<th>Bloco</th>
+				<th>Data de entrada</th>
+				<th>Nome Completo</th>
+				<th>CPF</th>
+				<th>RG</th>
+				<th>Telefone 1</th>
+				<th>Telefone 2</th>
+				<th>Telefone 3</th>
+				<th>Profissão</th>
+				<th>Data de nascimento</th>
+				<th>Sexo</th>
+				<th>Email</th>
 				<th width="200px">Action</th>
 			</tr>
 			<tr v-for="morador in moradores">
-				<td>@{{ morador.id_unidade }}</td>
+				<td>@{{ morador.unidade.numero_unidade }}</td>
 				<td>@{{ morador.data_entrada }}</td>
-				<td>@{{ morador.metragem }}</td>
-				<td>@{{ morador.quantidade_comodos }}</td>
-				<td>@{{ morador.numero_matricula }}</td>
-				<td>@{{ morador.situacao }}</td>
-				<td>@{{ morador.bloco.nome_bloco }}</td>
+				<td>@{{ morador.nome_completo }}</td>
+				<td>@{{ morador.cpf }}</td>
+				<td>@{{ morador.rg }}</td>
+				<td>@{{ morador.telefone_1 }}</td>
+				<td>@{{ morador.telefone_2 }}</td>
+				<td>@{{ morador.telefone_3 }}</td>
+				<td>@{{ morador.profissao }}</td>
+				<td>@{{ morador.data_nascimento }}</td>
+				<td>@{{ morador.sexo }}</td>
+				<td>@{{ morador.email }}</td>
 				<td>	
 					@permission(('item-edit'))
 				     	<button class="btn btn-primary" @click.prevent="editMorador(morador)">Edit</button>
@@ -83,41 +93,66 @@
 		        		<h4 class="modal-title" id="myModalLabel">Criar Morador</h4>
 		      		</div>
 		      		<div class="modal-body">
-		      			<form method="POST" enctype="multipart/form-data" v-on:submit.prevent="createUnidade">
+		      			<form method="POST" enctype="multipart/form-data" v-on:submit.prevent="createMorador">
 		      				<div class="form-group">
 								<label for="title">Número da unidade:</label>
-								<input type="text" name="numero_unidade" class="form-control" v-model="newUnidade.numero_unidade" />
-								<span v-if="formErrors['numero_unidade']" class="error text-danger">@{{ formErrors['numero_unidade'] }}</span>
+								<input type="text" name="id_unidade" class="form-control" v-model="newMorador.id_unidade" />
+								<span v-if="formErrors['id_unidade']" class="error text-danger">@{{ formErrors['id_unidade'] }}</span>
 							</div>
 							<div class="form-group">
-								<label for="title">Responsável:</label>
-								<input type="text" name="id_responsavel" class="form-control" v-model="newUnidade.id_responsavel" />
-								<span v-if="formErrors['id_responsavel']" class="error text-danger">@{{ formErrors['id_responsavel'] }}</span>
+								<label for="title">Data de entrada:</label>
+								<input type="text" name="data_entrada" class="form-control" v-model="newMorador.data_entrada" />
+								<span v-if="formErrors['data_entrada']" class="error text-danger">@{{ formErrors['data_entrada'] }}</span>
 							</div>
 							<div class="form-group">
-								<label for="title">Metragem:</label>
-								<input type="text" name="metragem" class="form-control" v-model="newUnidade.metragem" />
-								<span v-if="formErrors['metragem']" class="error text-danger">@{{ formErrors['metragem'] }}</span>
+								<label for="title">Nome completo:</label>
+								<input type="text" name="nome_completo" class="form-control" v-model="newMorador.nome_completo" />
+								<span v-if="formErrors['nome_completo']" class="error text-danger">@{{ formErrors['nome_completo'] }}</span>
 							</div>
 							<div class="form-group">
-								<label for="title">Quantidade de comodos:</label>
-								<input type="text" name="quantidade_comodos" class="form-control" v-model="newUnidade.quantidade_comodos" />
-								<span v-if="formErrors['quantidade_comodos']" class="error text-danger">@{{ formErrors['quantidade_comodos'] }}</span>
+								<label for="title">CPF:</label>
+								<input type="text" name="cpf" class="form-control" v-model="newMorador.cpf" />
+								<span v-if="formErrors['cpf']" class="error text-danger">@{{ formErrors['cpf'] }}</span>
 							</div>
 							<div class="form-group">
-								<label for="title">Número da matrícula:</label>
-								<input type="text" name="numero_matricula" class="form-control" v-model="newUnidade.numero_matricula" />
-								<span v-if="formErrors['numero_matricula']" class="error text-danger">@{{ formErrors['numero_matricula'] }}</span>
+								<label for="title">RG:</label>
+								<input type="text" name="rg" class="form-control" v-model="newMorador.rg" />
+								<span v-if="formErrors['rg']" class="error text-danger">@{{ formErrors['rg'] }}</span>
 							</div>
 							<div class="form-group">
-								<label for="title">Situação:</label>
-								<input type="text" name="situacao" class="form-control" v-model="newUnidade.situacao" />
-								<span v-if="formErrors['situacao']" class="error text-danger">@{{ formErrors['situacao'] }}</span>
+								<label for="title">Telefone 1:</label>
+								<input type="text" name="telefone_1" class="form-control" v-model="newMorador.telefone_1" />
+								<span v-if="formErrors['telefone_1']" class="error text-danger">@{{ formErrors['telefone_1'] }}</span>
 							</div>
 							<div class="form-group">
-								<label for="title">Bloco:</label>
-								<input type="text" name="id_bloco" class="form-control" v-model="newUnidade.id_bloco" />
-								<span v-if="formErrors['id_bloco']" class="error text-danger">@{{ formErrors['id_bloco'] }}</span>
+								<label for="title">Telefone 2:</label>
+								<input type="text" name="telefone_2" class="form-control" v-model="newMorador.telefone_2" />
+								<span v-if="formErrors['telefone_2']" class="error text-danger">@{{ formErrors['telefone_2'] }}</span>
+							</div>
+							<div class="form-group">
+								<label for="title">Telefone 3:</label>
+								<input type="text" name="telefone_3" class="form-control" v-model="newMorador.telefone_3" />
+								<span v-if="formErrors['telefone_3']" class="error text-danger">@{{ formErrors['telefone_3'] }}</span>
+							</div>
+							<div class="form-group">
+								<label for="title">Profissão:</label>
+								<input type="text" name="profissao" class="form-control" v-model="newMorador.profissao" />
+								<span v-if="formErrors['profissao']" class="error text-danger">@{{ formErrors['profissao'] }}</span>
+							</div>
+							<div class="form-group">
+								<label for="title">Data de nascimento:</label>
+								<input type="text" name="data_nascimento" class="form-control" v-model="newMorador.data_nascimento" />
+								<span v-if="formErrors['data_nascimento']" class="error text-danger">@{{ formErrors['data_nascimento'] }}</span>
+							</div>
+							<div class="form-group">
+								<label for="title">Sexo:</label>
+								<input type="text" name="sexo" class="form-control" v-model="newMorador.sexo" />
+								<span v-if="formErrors['sexo']" class="error text-danger">@{{ formErrors['sexo'] }}</span>
+							</div>
+							<div class="form-group">
+								<label for="title">Email:</label>
+								<input type="text" name="email" class="form-control" v-model="newMorador.email" />
+								<span v-if="formErrors['email']" class="error text-danger">@{{ formErrors['email'] }}</span>
 							</div>
 							<div class="form-group">
 								<button type="submit" class="btn btn-success">Salvar</button>
@@ -139,41 +174,66 @@
 		        		<h4 class="modal-title" id="myModalLabel">Editar Morador</h4>
 		      		</div>
 		      		<div class="modal-body">
-		      			<form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updateUnidade(fillUnidade.id)">
+		      			<form method="POST" enctype="multipart/form-data" v-on:submit.prevent="updateMorador(fillMorador.id)">
 			      			<div class="form-group">
 								<label for="title">Número da unidade:</label>
-								<input type="text" name="numero_unidade" class="form-control" v-model="fillUnidade.numero_unidade" />
-								<span v-if="formErrors['numero_unidade']" class="error text-danger">@{{ formErrors['numero_unidade'] }}</span>
+								<input type="text" name="id_unidade" class="form-control" v-model="fillMorador.id_unidade" />
+								<span v-if="formErrors['id_unidade']" class="error text-danger">@{{ formErrors['id_unidade'] }}</span>
 							</div>
 							<div class="form-group">
-								<label for="title">Responsável:</label>
-								<input type="text" name="id_responsavel" class="form-control" v-model="fillUnidade.id_responsavel" />
-								<span v-if="formErrors['id_responsavel']" class="error text-danger">@{{ formErrors['id_responsavel'] }}</span>
+								<label for="title">Data de entrada:</label>
+								<input type="text" name="data_entrada" class="form-control" v-model="fillMorador.data_entrada" />
+								<span v-if="formErrors['data_entrada']" class="error text-danger">@{{ formErrors['data_entrada'] }}</span>
 							</div>
 							<div class="form-group">
-								<label for="title">Metragem:</label>
-								<input type="text" name="metragem" class="form-control" v-model="fillUnidade.metragem" />
-								<span v-if="formErrors['metragem']" class="error text-danger">@{{ formErrors['metragem'] }}</span>
+								<label for="title">Nome completo:</label>
+								<input type="text" name="nome_completo" class="form-control" v-model="fillMorador.nome_completo" />
+								<span v-if="formErrors['nome_completo']" class="error text-danger">@{{ formErrors['nome_completo'] }}</span>
 							</div>
 							<div class="form-group">
-								<label for="title">Quantidade de comodos:</label>
-								<input type="text" name="quantidade_comodos" class="form-control" v-model="fillUnidade.quantidade_comodos" />
-								<span v-if="formErrors['quantidade_comodos']" class="error text-danger">@{{ formErrors['quantidade_comodos'] }}</span>
+								<label for="title">CPF:</label>
+								<input type="text" name="cpf" class="form-control" v-model="fillMorador.cpf" />
+								<span v-if="formErrors['cpf']" class="error text-danger">@{{ formErrors['cpf'] }}</span>
 							</div>
 							<div class="form-group">
-								<label for="title">Número da matrícula:</label>
-								<input type="text" name="numero_matricula" class="form-control" v-model="fillUnidade.numero_matricula" />
-								<span v-if="formErrors['numero_matricula']" class="error text-danger">@{{ formErrors['numero_matricula'] }}</span>
+								<label for="title">RG:</label>
+								<input type="text" name="rg" class="form-control" v-model="fillMorador.rg" />
+								<span v-if="formErrors['rg']" class="error text-danger">@{{ formErrors['rg'] }}</span>
 							</div>
 							<div class="form-group">
-								<label for="title">Situação:</label>
-								<input type="text" name="situacao" class="form-control" v-model="fillUnidade.situacao" />
-								<span v-if="formErrors['situacao']" class="error text-danger">@{{ formErrors['situacao'] }}</span>
+								<label for="title">Telefone 1:</label>
+								<input type="text" name="telefone_1" class="form-control" v-model="fillMorador.telefone_1" />
+								<span v-if="formErrors['telefone_1']" class="error text-danger">@{{ formErrors['telefone_1'] }}</span>
 							</div>
 							<div class="form-group">
-								<label for="title">Bloco:</label>
-								<input type="text" name="id_bloco" class="form-control" v-model="fillUnidade.id_bloco" />
-								<span v-if="formErrors['id_bloco']" class="error text-danger">@{{ formErrors['id_bloco'] }}</span>
+								<label for="title">Telefone 2:</label>
+								<input type="text" name="telefone_2" class="form-control" v-model="fillMorador.telefone_2" />
+								<span v-if="formErrors['telefone_2']" class="error text-danger">@{{ formErrors['telefone_2'] }}</span>
+							</div>
+							<div class="form-group">
+								<label for="title">Telefone 3:</label>
+								<input type="text" name="telefone_3" class="form-control" v-model="fillMorador.telefone_3" />
+								<span v-if="formErrors['telefone_3']" class="error text-danger">@{{ formErrors['telefone_3'] }}</span>
+							</div>
+							<div class="form-group">
+								<label for="title">Profissão:</label>
+								<input type="text" name="profissao" class="form-control" v-model="fillMorador.profissao" />
+								<span v-if="formErrors['profissao']" class="error text-danger">@{{ formErrors['profissao'] }}</span>
+							</div>
+							<div class="form-group">
+								<label for="title">Data de nascimento:</label>
+								<input type="text" name="data_nascimento" class="form-control" v-model="fillMorador.data_nascimento" />
+								<span v-if="formErrors['data_nascimento']" class="error text-danger">@{{ formErrors['data_nascimento'] }}</span>
+							</div>
+							<div class="form-group">
+								<label for="title">Sexo:</label>
+								<input type="text" name="sexo" class="form-control" v-model="fillMorador.sexo" />
+								<span v-if="formErrors['sexo']" class="error text-danger">@{{ formErrors['sexo'] }}</span>
+							</div>
+							<div class="form-group">
+								<label for="title">Email:</label>
+								<input type="text" name="email" class="form-control" v-model="fillMorador.email" />
+								<span v-if="formErrors['email']" class="error text-danger">@{{ formErrors['email'] }}</span>
 							</div>
 							<div class="form-group">
 								<button type="submit" class="btn btn-success">Salvar</button>
