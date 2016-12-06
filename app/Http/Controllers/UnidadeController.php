@@ -56,6 +56,16 @@ class UnidadeController extends Controller
     public function store(Request $request)
     {
 
+        //dd($request);
+
+        $numero_unidade = $request->numero_unidade;
+        $id_responsavel = $request->id_responsavel;
+        $metragem = $request->metragem;
+        $quantidade_comodos = $request->quantidade_comodos;
+        $numero_matricula = $request->numero_matricula;
+        $situacao = $request->situacao;
+        $id_bloco = $request->id_bloco;
+
         $this->validate($request, [
 
             'id_bloco' => 'required',
@@ -64,8 +74,21 @@ class UnidadeController extends Controller
 
         ]);
 
+        if ($id_responsavel == "") {
 
-        $create = Unidade::create($request->all());
+            $id_responsavel = null;
+        }
+
+        //$create = Unidade::create($request->all());
+        $create = Unidade::create([
+            'numero_unidade' => $numero_unidade,
+            'id_responsavel' => $id_responsavel,
+            'metragem' => $metragem,
+            'quantidade_comodos' => $quantidade_comodos,
+            'numero_matricula' => $numero_matricula,
+            'situacao' => $situacao,
+            'id_bloco' => $id_bloco
+        ]);
 
 
         return response()->json($create);

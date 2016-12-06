@@ -18,7 +18,7 @@ class CreateUnidadeTable extends Migration
 
             $table->string('numero_unidade');
 
-            $table->integer('id_responsavel');
+            $table->integer('id_responsavel')->nullable(true);
 
             $table->double('metragem');
 
