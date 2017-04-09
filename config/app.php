@@ -178,9 +178,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //Providers incluidos pelo Rubens
+        //Provider de ACL
         Zizaco\Entrust\EntrustServiceProvider::class,
+        //Provider de Formulario
         Collective\Html\HtmlServiceProvider::class,
-        JeroenNoten\LaravelAdminLte\ServiceProvider::class,
 
     ],
 
@@ -230,7 +232,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        //ALias incluidos pelo Rubens
+        //Alisa de ACL
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        //Alias de Formulario
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
 

@@ -2,73 +2,154 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
+
 use App\Bloco;
 
+
 class BlocoController extends Controller
+
 {
 
-    public function manageBloco()
-    {
-        return view('bloco.index');
-    }
+    /**
+
+     * Display a listing of the resource.
+
+     *
+
+     * @return \Illuminate\Http\Response
+
+     */
 
     public function index(Request $request)
+
     {
 
-        $blocos = Bloco::latest()->paginate(25);
+        $blocos = Bloco::orderBy('id','DESC')->paginate(5);
 
+        return view('bloco.index',compact('blocos'))
 
-        $response = [
-
-            'pagination' => [
-
-                'total' => $blocos->total(),
-
-                'per_page' => $blocos->perPage(),
-
-                'current_page' => $blocos->currentPage(),
-
-                'last_page' => $blocos->lastPage(),
-
-                'from' => $blocos->firstItem(),
-
-                'to' => $blocos->lastItem()
-
-            ],
-
-            'data' => $blocos
-
-        ];
-
-
-        return response()->json($response);
+            ->with('i', ($request->input('page', 1) - 1) * 5);
 
     }
 
 
+    /**
+
+     * Show the form for creating a new resource.
+
+     *
+
+     * @return \Illuminate\Http\Response
+
+     */
+
+    public function create()
+
+    {
+
+        return view('bloco.create');
+
+    }
+
+
+    /**
+
+     * Store a newly created resource in storage.
+
+     *
+
+     * @param  \Illuminate\Http\Request  $request
+
+     * @return \Illuminate\Http\Response
+
+     */
+
     public function store(Request $request)
+
     {
 
         $this->validate($request, [
 
-            'nome_bloco' => 'required',
+            'title' => 'required',
 
-            'quantidade_unidade' => 'required',
+            'description' => 'required',
 
         ]);
 
 
-        $create = Bloco::create($request->all());
+        Bloco::create($request->all());
 
 
-        return response()->json($create);
+        return redirect()->route('bloco.index')
+
+                        ->with('success','Item created successfully');
 
     }
 
 
-    
+    /**
+
+     * Display the specified resource.
+
+     *
+
+     * @param  int  $id
+
+     * @return \Illuminate\Http\Response
+
+     */
+
+    public function show($id)
+
+    {
+
+        $bloco = Bloco::find($id);
+
+        return view('bloco.show',compact('item'));
+
+    }
+
+
+    /**
+
+     * Show the form for editing the specified resource.
+
+     *
+
+     * @param  int  $id
+
+     * @return \Illuminate\Http\Response
+
+     */
+
+    public function edit($id)
+
+    {
+
+        $bloco = Bloco::find($id);
+
+        return view('bloco.edit',compact('item'));
+
+    }
+
+
+    /**
+
+     * Update the specified resource in storage.
+
+     *
+
+     * @param  \Illuminate\Http\Request  $request
+
+     * @param  int  $id
+
+     * @return \Illuminate\Http\Response
+
+     */
 
     public function update(Request $request, $id)
 
@@ -76,21 +157,34 @@ class BlocoController extends Controller
 
         $this->validate($request, [
 
-            'nome_bloco' => 'required',
+            'title' => 'required',
 
-            'quantidade_unidade' => 'required',
+            'description' => 'required',
 
         ]);
 
 
-        $edit = Bloco::find($id)->update($request->all());
+        Bloco::find($id)->update($request->all());
 
 
-        return response()->json($edit);
+        return redirect()->route('bloco.index')
+
+                        ->with('success','Item updated successfully');
 
     }
 
 
+    /**
+
+     * Remove the specified resource from storage.
+
+     *
+
+     * @param  int  $id
+
+     * @return \Illuminate\Http\Response
+
+     */
 
     public function destroy($id)
 
@@ -98,7 +192,9 @@ class BlocoController extends Controller
 
         Bloco::find($id)->delete();
 
-        return response()->json(['done']);
+        return redirect()->route('bloco.index')
+
+                        ->with('success','Item deleted successfully');
 
     }
 

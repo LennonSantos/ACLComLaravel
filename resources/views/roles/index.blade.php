@@ -1,4 +1,7 @@
-@extends('adminlte::page')
+@extends('layouts.app')
+
+ 
+
 @section('content')
 
 	<div class="row">
@@ -13,7 +16,7 @@
 
 	        <div class="pull-right">
 
-	        	@permission(('role-create'))
+	        	@permission('role-create')
 
 	            <a class="btn btn-success" href="{{ route('roles.create') }}"> Create New Role</a>
 
@@ -63,13 +66,13 @@
 
 			<a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Show</a>
 
-			@permission(('role-edit'))
+			@permission('role-edit')
 
 			<a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
 
 			@endpermission
 
-			@permission(('role-delete'))
+			@permission('role-delete')
 
 			{!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
 

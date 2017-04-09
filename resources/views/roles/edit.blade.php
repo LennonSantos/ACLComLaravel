@@ -1,4 +1,7 @@
-@extends('adminlte::page')
+@extends('layouts.app')
+
+ 
+
 @section('content')
 
 	<div class="row">
@@ -76,7 +79,7 @@
                 <strong>Permission:</strong>
 
                 <br/>
-
+                <?php $rolePermissions = (array) $rolePermissions;?>
                 @foreach($permission as $value)
 
                 	<label>{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions) ? true : false, array('class' => 'name')) }}
