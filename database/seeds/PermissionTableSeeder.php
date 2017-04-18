@@ -26,7 +26,7 @@ class PermissionTableSeeder extends Seeder
         $permission = [
 
         	[
-
+                'id' => 1,
         		'name' => 'role-list',
 
         		'display_name' => 'Tela que lista funções',
@@ -36,7 +36,7 @@ class PermissionTableSeeder extends Seeder
         	],
 
         	[
-
+                'id' => 2,
         		'name' => 'role-create',
 
         		'display_name' => 'Cria função',
@@ -46,7 +46,7 @@ class PermissionTableSeeder extends Seeder
         	],
 
         	[
-
+                'id' => 3,
         		'name' => 'role-edit',
 
         		'display_name' => 'Edita função',
@@ -56,7 +56,7 @@ class PermissionTableSeeder extends Seeder
         	],
 
         	[
-
+                'id' => 4,
         		'name' => 'role-delete',
 
         		'display_name' => 'Deleta Função',
@@ -65,7 +65,7 @@ class PermissionTableSeeder extends Seeder
 
         	],
             [
-
+                'id' => 5,
                 'name' => 'bloco-list',
 
                 'display_name' => 'Tela que lista blocos',
@@ -75,7 +75,7 @@ class PermissionTableSeeder extends Seeder
             ],
 
             [
-
+                'id' => 6,
                 'name' => 'bloco-create',
 
                 'display_name' => 'Cria bloco',
@@ -85,7 +85,7 @@ class PermissionTableSeeder extends Seeder
             ],
 
             [
-
+                'id' => 7,
                 'name' => 'bloco-edit',
 
                 'display_name' => 'Edita bloco',
@@ -95,7 +95,7 @@ class PermissionTableSeeder extends Seeder
             ],
 
             [
-
+                'id' => 8,
                 'name' => 'bloco-delete',
 
                 'display_name' => 'Deleta bloco',
